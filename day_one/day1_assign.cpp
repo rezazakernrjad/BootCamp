@@ -4,7 +4,7 @@ using namespace std;
 void BubbleSort(int* arr, int size ){
     int tmp{0} , i{0}; 
     for (int j = 0; j < size  ; j++){
-        for (i = 0; i < size ; i++){
+        for (i = 0; i < size-1 ; i++){
             if (arr[i] > arr[i+1]){
                 tmp = arr[i];
                 arr[i] = arr[i+1];
@@ -29,7 +29,7 @@ void SelectionSort(int* arr, int size){
 
 void BoundaryDescending(int* arr,  int& lwr, int& upr){
     int size = upr - lwr -1;
-    int desc_arr[size];
+    int desc_arr[abs(size)];
     cout <<"size: " << size << endl;
     if (lwr < upr){
         int size = upr - lwr -1;
