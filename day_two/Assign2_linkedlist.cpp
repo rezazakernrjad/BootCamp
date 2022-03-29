@@ -9,6 +9,7 @@ If you asked the function to insert a new node has data equals to 15 at position
 #include<iostream>
 #include<string>
 #include <climits>
+#include <limits.h>
 using namespace std;
 
 class Node {

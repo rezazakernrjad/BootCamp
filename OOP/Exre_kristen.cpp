@@ -2,7 +2,7 @@
 /*
 Kristen is a contender for valedictorian of her high school. She wants to know how many students (if any) have 
 scored higher than her in the exams given during this semester.
-Create a class named with the following specifications:
+Create a class named Student with the following specifications:
 •An instance variable named to hold a student's exam scores.
 •A void input() function that reads integers and saves them to .
 •An int calculateTotalScore() function that returns the sum of the student's scores.
