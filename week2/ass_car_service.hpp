@@ -73,7 +73,6 @@ namespace Car {
         void printCost(){
             for (int k = 0; k < number_of_cars; k++){
                 std::cout << "*****cost for car # "<< k + 1 << ": " << car[k].cost << std::endl;
-//                car[n].cost = 0;
             }
         }
         ~CarService(){

@@ -18,10 +18,7 @@ using namespace std;
 #include "ass_car_service.hpp"
 
 void Car::CarService::customer_input(CarService* car_service){
-//    Car* car;
-//    car = new Car[number_of_cars];
-//    cout << "Enter number of cars you what to be taken care of: ";
-//    cin >> car_service->number_of_cars;
+
     do {
         cout << "Enter number of cars you what to be taken care of: ";
         cin >> car_service->number_of_cars;
@@ -50,20 +47,14 @@ void Car::CarService::customer_input(CarService* car_service){
     cout <<"******************************************" << endl;
 
 }
-/*
-add  
-    string* service_names;  
-    service_names = new string;
-to save the name of service each car got while user enters what 
-services he needs.
-*/
+
 bool Car::CarService::calculate_coest(CarService* car_service){
 //    int service_per_car[number_of_cars][13]{0}; 
     for (int n =0; n < car_service->number_of_cars; n++){
     bool excont{true};
     int k{0};
     do {
-        cout << "For What part of car number "<< n + 1 <<" you need reparation: ";
+        cout << "For What part of car number "<< n + 1 <<" you need reparation (Choose from the list): ";
         cin >> k;
         if ((k > 0) && (k <= 13)){
             if (service_per_car1[n][k-1] == 1){
@@ -113,7 +104,6 @@ bool Car::CarService::calculate_coest(CarService* car_service){
                     car_service->car[n].cost += 0;
                 }
             }
-//              service_per_car[n][k] = 1;
               car_service->service_per_car1[n][k-1] = 1;
               cout << " car "<< n << " part " << k << endl;
             } else if (k == 0){
@@ -139,5 +129,5 @@ int main(){
     carService->printBoughtList();
     carService->printCost();
     }
-    
+    carService->~CarService();
 }
