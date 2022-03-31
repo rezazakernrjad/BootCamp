@@ -42,7 +42,6 @@ namespace Car {
         int date;
         Payment payment;
         int number_of_cars{0};
-        char *serviceName;
         int** service_per_car1;
         string service_name[13] ={"Engin-Cylinder: 200", "Engin-pipe: 150", "Engin-catalysor: 300",
                                     "Body-door: 300", "Body-Mirror: 100", "Body-dooTurnindicator: 200", "Body-Headlamps: 350",
@@ -50,13 +49,12 @@ namespace Car {
                                     "Wheel-Tire: 400", "Wheel-Ring: 300", "Wheel-change: 100"};
     public:
         void customer_input(CarService*);
-        void calculate_coest(CarService*);
+        bool calculate_coest(CarService*);
         int getNumberofCars(){
             return number_of_cars;
         }
         void setNumberofCars(int& number_of_cars){
             car = new Car[number_of_cars];
-            serviceName = new char[number_of_cars];
             service_per_car1 = new int*[number_of_cars];
             for (int ar =0; ar < number_of_cars; ar++){
                 // 13 number of total services the workshop offers. sum of # of structs
@@ -77,6 +75,13 @@ namespace Car {
                 std::cout << "*****cost for car # "<< k + 1 << ": " << car[k].cost << std::endl;
 //                car[n].cost = 0;
             }
+        }
+        ~CarService(){
+            std::cout << "Exit Program run deconstructor" << endl;
+            std::cout<< "delete service_per_car1"  << endl;
+            delete service_per_car1;
+            std::cout << "delete car" << std::endl;
+            delete car;
         }
     };//class
 } // namespace

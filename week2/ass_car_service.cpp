@@ -46,6 +46,9 @@ void Car::CarService::customer_input(CarService* car_service){
     cout <<"******************************************" << endl;
     cout << "* press 0 once you are done with the car " << "*" <<endl;
     cout <<"******************************************" << endl;
+    cout << "* Enter -1 to EXIT  " << "*" <<endl;
+    cout <<"******************************************" << endl;
+
 }
 /*
 add  
@@ -54,7 +57,7 @@ add
 to save the name of service each car got while user enters what 
 services he needs.
 */
-void Car::CarService::calculate_coest(CarService* car_service){
+bool Car::CarService::calculate_coest(CarService* car_service){
 //    int service_per_car[number_of_cars][13]{0}; 
     for (int n =0; n < car_service->number_of_cars; n++){
     bool excont{true};
@@ -116,22 +119,25 @@ void Car::CarService::calculate_coest(CarService* car_service){
             } else if (k == 0){
                 cout << "*****exit car " << n + 1 << "****" << endl;
                 excont = false;
+            } else if (k == -1) {
+                car_service->~CarService();
+                return false;
             } else {
-                cout << "!!!!!!!!! WROnG NUMBER Enter number again..." << endl;
+                    cout << "!!!!!!!!! WROnG NUMBER Enter number again..." << endl;
             }
         } while (excont);
     }
     system("clear");
-     
+     return true;
 }
 
 int main(){
     Car::CarService* carService;
     carService = new Car::CarService;
     carService->customer_input(carService);
-    carService->calculate_coest(carService);
+    if (carService->calculate_coest(carService)) {
     carService->printBoughtList();
-    cout << "number of cars: " << carService->getNumberofCars() << endl;
     carService->printCost();
+    }
     
 }
