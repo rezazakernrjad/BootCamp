@@ -78,9 +78,9 @@ namespace Car {
         ~CarService(){
             std::cout << "Exit Program run deconstructor" << endl;
             std::cout<< "delete service_per_car1"  << endl;
-            delete service_per_car1;
+            delete [] service_per_car1;
             std::cout << "delete car" << std::endl;
-            delete car;
+            delete [] car;
         }
     };//class
 } // namespace
