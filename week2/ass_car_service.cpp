@@ -6,53 +6,66 @@ for them so they could keep ATLEAST the below records:
 • Parts changed (at least 2 different parts)
 • Payment (method & amount)
 */
-
+/*
+TODO:
+add exit machanism: ask the client to press "c" to exit the process:
+    delete memories borrowed from the heap.
+print out a list of bought services per car.
+    create a vector of strings including each service name and price of service
+*/
 #include<iostream>
 using namespace std;
 #include "ass_car_service.hpp"
 
 void Car::CarService::customer_input(CarService* car_service){
-    Car* car;
-    car = new Car[number_of_cars];
-    cout << "Enter number of cars you what to be taken care of: ";
-    cin >> car_service->number_of_cars;
+//    Car* car;
+//    car = new Car[number_of_cars];
+//    cout << "Enter number of cars you what to be taken care of: ";
+//    cin >> car_service->number_of_cars;
+    do {
+        cout << "Enter number of cars you what to be taken care of: ";
+        cin >> car_service->number_of_cars;
+        if (car_service->number_of_cars <= 0){
+            cout << "Number of cars you entered is not correct. try again..." << endl;
+        }
+    } while (car_service->number_of_cars <= 0 );
     setNumberofCars(car_service->number_of_cars);
-    int cost[car_service->number_of_cars]{0};
-    int service_per_car[number_of_cars][13]{0}; 
-    // 13 number of total services the workshop offers. sum of # of structs
-    int k{0};
-    
+    cout << "1- For Engin:Cylinder" << endl;
+    cout << "2- For Engin:Pipe" << endl;
+    cout << "3- For Engin:Catalysor" << endl;
+    cout << "4- For Body:Door" << endl;
+    cout << "5- For Body:Mirror" << endl;
+    cout << "6- For Body:TurnIndicators" << endl;
+    cout << "7- For Body:HeadLamp" << endl;
+    cout << "8- For Window:Glass" << endl;
+    cout << "9- For Window:Motor" << endl;
+    cout << "10- For Window:Plast" << endl;
+    cout << "11- For Wheel:Tire" << endl;
+    cout << "12- For Wheel:Ring" << endl;
+    cout << "13- For Wheel:change" << endl;
+    cout <<"******************************************" << endl;
+    cout << "* press 0 once you are done with the car " << "*" <<endl;
+    cout <<"******************************************" << endl;
+}
+/*
+add  
+    string* service_names;  
+    service_names = new string;
+to save the name of service each car got while user enters what 
+services he needs.
+*/
+void Car::CarService::calculate_coest(CarService* car_service){
+//    int service_per_car[number_of_cars][13]{0}; 
     for (int n =0; n < car_service->number_of_cars; n++){
-        bool excont{true};
-        do {
-            
-            cout << "For Engin:Cylinder enter       1" << endl;
-            cout << "For Engin:Pipe enter           2" << endl;
-            cout << "For Engin:Catalysor enter      3" << endl;
-            cout << "For Body:Door enter            4" << endl;
-            cout << "For Body:Mirror enter          5" << endl;
-            cout << "For Body:TurnIndicators enter  6" << endl;
-            cout << "For Body:HeadLamp enter        7" << endl;
-            cout << "For Window:Glass enter         8" << endl;
-            cout << "For Window:Motor enter         9" << endl;
-            cout << "For Window:Plast enter         10" << endl;
-            cout << "For Wheel:Tire enter           11" << endl;
-            cout << "For Wheel:Ring enter           12" << endl;
-            cout << "For Wheel:change enter         13" << endl;
-            cout << "press 0 once you are done with car number " << n +1 << endl;
-            cout << "For What part of car number "<< n + 1 <<" you need reparation: ";
-            cin >> k;
-            if ((k > 0) && (k <= 13)){
-              service_per_car[n][k] = 1;  
-              cout << " car "<< n << " part " << k << endl;
-            } else if (k == 0){
-                cout << "exit car " << n << endl;
-                excont = false;
-            } else {
-                cout << " Enter number again..." << endl;
-            }
-        
-
+    bool excont{true};
+    int k{0};
+    do {
+        cout << "For What part of car number "<< n + 1 <<" you need reparation: ";
+        cin >> k;
+        if ((k > 0) && (k <= 13)){
+            if (service_per_car1[n][k-1] == 1){
+            cout << "!!!!you have alraedy cosen this servis for car " << n +1 << endl;
+        } else {
             switch (k) {
                 case 1:
                     car_service->car[n].cost += car_service->car[n].engin.cylinder;
@@ -95,24 +108,30 @@ void Car::CarService::customer_input(CarService* car_service){
                     break;
                 default:
                     car_service->car[n].cost += 0;
+                }
+            }
+//              service_per_car[n][k] = 1;
+              car_service->service_per_car1[n][k-1] = 1;
+              cout << " car "<< n << " part " << k << endl;
+            } else if (k == 0){
+                cout << "*****exit car " << n + 1 << "****" << endl;
+                excont = false;
+            } else {
+                cout << "!!!!!!!!! WROnG NUMBER Enter number again..." << endl;
             }
         } while (excont);
-        car_service->printCost(n);
     }
+    system("clear");
+     
 }
-/*
-add  
-    string* service_names;  
-    service_names = new string;
-to save the name of service each car got while user enters what 
-services he needs.
-*/
-
 
 int main(){
     Car::CarService* carService;
     carService = new Car::CarService;
     carService->customer_input(carService);
+    carService->calculate_coest(carService);
+    carService->printBoughtList();
     cout << "number of cars: " << carService->getNumberofCars() << endl;
+    carService->printCost();
     
 }
