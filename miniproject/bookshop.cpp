@@ -4,7 +4,7 @@
 
 #include"bookshop.hpp"
 
-void BookProj::BookShop::AddBook(BookShop* book_shop, Book* new_book){
+void BookProj::BookShop::AddBook(Book* new_book){
     BookProj::Book* appended_book_array = new Book[number_of_titles_ + 1];
 //    copy(book_, book_ + number_of_titles_, appended_book_array);
     for (unsigned k{}; k < number_of_titles_; ++k ){
@@ -19,24 +19,23 @@ void BookProj::BookShop::AddBook(BookShop* book_shop, Book* new_book){
     appended_book_array[number_of_titles_].year_of_pub = new_book->year_of_pub;
     delete [] book_;
     book_ = appended_book_array;
-    book_shop->PrintBook(book_shop, number_of_titles_);
+//    book_shop->PrintBook(book_shop, number_of_titles_);
     number_of_titles_++; // NOTE THIS
 }
 void BookProj::BookShop::PrintBook(BookShop* book_shop, int the_book){
         cout << "******************" << endl;
-        cout << "author book : " << the_book << "  " << book_shop->book_[the_book].auth << endl;
-        cout << "title book : " << the_book << "  " << book_shop->book_[the_book].title << endl;
-        cout << "book id book : " << the_book<< "  " << book_shop->book_[the_book].book_id << endl;
-        cout << "no_exist book : " << the_book << "  " << book_shop->book_[the_book].no_exist << endl;
-        cout << "price book : " <<the_book << "  " << book_shop->book_[the_book].price << endl;
-        cout << "publisher book : " << the_book<< "  " << book_shop->book_[the_book].publisher << endl;
-        cout << "year book : " << the_book << "  " << book_shop->book_[the_book].year_of_pub << endl;
+        cout << "title book : " << book_shop->book_[the_book].title << endl;
+        cout << "author book : " << book_shop->book_[the_book].auth << endl;
+        cout << "book id book : " << book_shop->book_[the_book].book_id << endl;
+        cout << "publisher : " << book_shop->book_[the_book].publisher << endl;
+        cout << "year book : " << book_shop->book_[the_book].year_of_pub << endl;
+        cout << "price book : " << book_shop->book_[the_book].price << endl;
+        cout << "number of copies : "  << book_shop->book_[the_book].no_exist << endl;
         cout << "******************" << endl;
 }
 void BookProj::BookShop::GetBook(Book* book_attr){
     cout << "Enter New book to the shop " << endl;
     cout << "Enter book title: ";
-    
     do {getline(cin, book_attr->title);}while (book_attr->title== "");
     cout << "Enter author name: ";
     getline(cin, book_attr->auth);
@@ -51,34 +50,71 @@ void BookProj::BookShop::GetBook(Book* book_attr){
     cout << "Enter number of copies: ";
     cin >> book_attr->no_exist;
     }
-void BookProj::BookShop::SearchBook(BookShop* book_shop){
-    system("clear");
+int BookProj::BookShop::SearchBook(BookShop* book_shop){
+//    system("clear");
     cout << "Enter name of the book you look for: ";
     string title{};
     string author{};
-    do {getline(cin, title);}while (title== "");
+    do {
+        getline(cin, title);
+    }while (title== "");
     cout << "Enter Author of the book you look for: ";
-    do {getline(cin, author);}while (author== "");
+    do {
+        getline(cin, author);
+    }while (author== "");
     for (int s{}; s < book_shop->number_of_titles_; s++){
         if (book_shop->book_[s].title == title){
             if (book_shop->book_[s].auth == author){
-                cout << "The book you are looking for is: " << endl;
-                book_shop->PrintBook(book_shop, s);
+                return s;
             }
         }
     }
-    cout << "The book not found in book store data base!!"<< endl;
+
+    return -1;
+}
+int BookProj::PrintMenu(){
+    int menu{0};
+    
+    cout << "1. Entry of New Book " << endl;;
+    cout << "2. Buy a Book" <<endl;
+    cout << "3. Search a Book" <<endl;
+    cout << "4.Edit Details Of a Book" <<endl;
+    cout << "5. Exit" <<endl;
+    cout << "Choose an action according to the menue: ";
+    do {cin >> menu;
+        if (menu <= 0 || menu > 5){
+            cout << "Enter according the menue...";
+        }
+    } while (menu <= 0 || menu > 5);
+    return menu;
 }
 int main(){
     BookProj::BookShop* book_shop = nullptr;
     BookProj::Book* new_book = nullptr;
     new_book = new BookProj::Book;
     book_shop = new BookProj::BookShop;
-    int no{0};
+    int menu = BookProj::PrintMenu();
+    int s{};
     do {
-        book_shop->GetBook(new_book);
-        book_shop->AddBook(book_shop, new_book);
-        no++;
-    }while (no < 3);
-    book_shop->SearchBook(book_shop);
+        switch (menu) {
+            case 1:
+                book_shop->GetBook(new_book);
+                book_shop->AddBook(new_book);
+                break;
+            case 3:
+                s = book_shop->SearchBook(book_shop);
+                if (s>=0) {
+                    cout << "The Book is found successfully: " << endl;
+                    book_shop->PrintBook(book_shop, s);
+                } else {
+                    cout << "The book not found in book store data base!!"<< endl;
+                    }
+                break;
+            case 5:
+                book_shop->~BookShop();
+            default:
+                menu = BookProj::PrintMenu();
+        }
+        menu = BookProj::PrintMenu();
+    } while (menu != 5);
 }

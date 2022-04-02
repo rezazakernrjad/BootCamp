@@ -20,12 +20,16 @@ namespace BookProj {
 
         public:
             void GetBook(Book*);
-            void AddBook(BookShop*, Book*);
+            void AddBook(Book*);
             void AddBookFromList(string*);
-            void SearchBook(BookShop*);
+            int SearchBook(BookShop*);
             bool EditBook(BookShop*);
             bool BuyBook(BookShop*);
             void PrintBook(BookShop*, int);
-            ~BookShop();
+            ~BookShop(){
+                delete [] book_;
+                cout << "freed borrowed heep" << endl;
+            }
     };
+    int PrintMenu();
 } //namespace BookProj
