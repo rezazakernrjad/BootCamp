@@ -15,11 +15,10 @@ namespace BookProj {
 
     class BookShop {
             Book* book_ = nullptr;
-            int ordered_number_{0}; // how many books of a title been ordered
             int number_of_titles_{0}; // how many titles are in the shop
 
         public:
-            void GetBook(Book*);
+            bool GetBook(Book*);
             void AddBook(Book*);
             void AddBookFromList(string*);
             int SearchBook(BookShop*);
@@ -30,6 +29,7 @@ namespace BookProj {
                 delete [] book_;
                 cout << "freed borrowed heep" << endl;
             }
+            void ListBooksInFile(Book*);
     };
     int PrintMenu();
 } //namespace BookProj
