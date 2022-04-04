@@ -1,0 +1,41 @@
+title :	first title_1
+author: first author_1
+publsh:	Mc sy publishe world wide_
+price : 1000
+copies: 10000
+
+title :	first title_2
+author: first author_2
+publsh:	Mc sy publishe world wide_2
+price : 2000
+copies: 20000
+
+title :	first title_3
+author: first author_3
+publsh:	Mc sy publishe world wide_3
+price : 3000
+copies: 30000
+
+title :	first title_4
+author: first author_4
+publsh:	Mc sy publishe world wide_4
+price : 4000
+copies: 40000
+
+title :	first title_5
+author: first author_5
+publsh:	Mc sy publishe world wide_5
+price : 5000
+copies: 50000
+
+title :	first title_6
+author: first author_6
+publsh:	Mc sy publishe world wide_6
+price : 6000
+copies: 60000
+
+title :	first title_7
+author: first author_7
+publsh:	Mc sy publishe world wide_7
+price : 7000
+copies: 70000

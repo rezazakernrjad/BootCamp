@@ -1,5 +1,6 @@
 #include<string>
 #include<iostream>
+#include <fstream>
 using namespace std;
 
 namespace BookProj {
@@ -7,8 +8,8 @@ namespace BookProj {
         string title;
         string auth;
         string publisher;
-        string book_id;
-        int year_of_pub;
+//        string book_id;
+//        int year_of_pub;
         int price;
         int no_exist; //how many of each book exist in store
     };
@@ -18,12 +19,13 @@ namespace BookProj {
             int number_of_titles_{0}; // how many titles are in the shop
 
         public:
+            string title_author[2];
             bool GetBook(Book*);
             void AddBook(Book*);
-            void AddBookFromList(string*);
+            bool AddBookFromList(BookShop*,Book*, string);
             int SearchBook(BookShop*);
-            bool EditBook(BookShop*);
-            bool BuyBook(BookShop*);
+            bool EditBook(BookShop*, int&);
+            bool BuyBook(BookShop*, int&, int&);
             void PrintBook(BookShop*, int);
             ~BookShop(){
                 delete [] book_;
@@ -32,4 +34,6 @@ namespace BookProj {
             void ListBooksInFile(Book*);
     };
     int PrintMenu();
+    void search_util(string* title_author);
+    int bs_main();
 } //namespace BookProj
