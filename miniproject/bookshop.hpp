@@ -16,7 +16,7 @@ namespace BookProj {
 
     class BookShop {
             Book* book_ = nullptr;
-            int number_of_titles_{0}; // how many titles are in the shop
+            int number_of_titles_; // how many titles are in the shop
 
         public:
             string title_author[2];
@@ -35,5 +35,4 @@ namespace BookProj {
     };
     int PrintMenu();
     void search_util(string* title_author);
-    int bs_main();
 } //namespace BookProj

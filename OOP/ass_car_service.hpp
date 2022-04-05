@@ -42,13 +42,22 @@ namespace Car {
         int date;
         Payment payment;
         int number_of_cars{0};
+        char *serviceName;
     public:
+        
         void customer_input(CarService*);
         int getNumberofCars(){
             return number_of_cars;
         }
         void setNumberofCars(int& number_of_cars){
-         car = new Car[number_of_cars];
+            car = new Car[number_of_cars];
+            serviceName = new char[number_of_cars];
+        }
+        void setServiceName(char* servicename, int n){
+            serviceName[n] = servicename;
+        }
+        void printServiceName(int n){
+            std::cout << "service name: " << serviceName[n] << endl; 
         }
         void printCost(int& n){
             std::cout<< "cost for car # "<< n << ": " << car[n].cost << endl;

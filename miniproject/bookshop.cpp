@@ -17,7 +17,6 @@ void BookProj::BookShop::AddBook(Book* new_book){
     delete [] book_;
     book_ = appended_book_array;
     number_of_titles_++; // NOTE THIS
-    cout << "in book add number_of_titles_: " << number_of_titles_ << endl;
 }
 void BookProj::BookShop::PrintBook(BookShop* book_shop, int the_book){
         cout << "******************" << endl;
@@ -55,15 +54,10 @@ int BookProj::BookShop::SearchBook(BookShop* book_shop){
 //    string title_author[2];
     search_util(title_author);
     string title{title_author[0]};
+//    string author{title_author[1]};
+    // NOTE:
     string author{title_author[1]};
-    cout << "SEARCH: titl: " << title << " / author: " << author << endl;
-    // do {getline(cin, title);}while (title== "");
-    // cout << "Enter Author of the book you look for: ";
-    // do { getline(cin, author);}while (author== "");
-    cout << "book_shop->number_of_titles_: " << book_shop->number_of_titles_ << endl;
-    for (int s{}; s < 6 /*book_shop->number_of_titles_*/; s++){
-        cout << "first tiit in loop: " << s << ": " << book_shop->book_[s].title << endl;
-        cout << "first tiit in loop: "<< s << ": " << book_shop->book_[s].auth << endl;
+    for (int s{}; s < book_shop->number_of_titles_; s++){
         if (book_shop->book_[s].title == title){
             if (book_shop->book_[s].auth == author){
                 cout << "The Book is found successfully: " << endl;
@@ -80,15 +74,19 @@ bool BookProj::BookShop::BuyBook(BookShop* book_shop, int& s, int& ordered_numbe
         found_book = new BookProj::Book;
             bool isbought{false};
             int to_pay{};
-            if (ordered_number < book_shop->book_[s].no_exist){
-                book_shop->book_[s].no_exist -= ordered_number;
-                book_shop->PrintBook(book_shop, s);
-                cout << "Amount: $. " << book_shop->book_[s].price * ordered_number << endl;
-                cout << "Book bought successfully!" << endl;
-                isbought = true;
+            if (book_shop->book_[s].no_exist > 0) {
+                if (ordered_number < book_shop->book_[s].no_exist){
+                    book_shop->book_[s].no_exist -= ordered_number;
+                    book_shop->PrintBook(book_shop, s);
+                    cout << "Amount: $. " << book_shop->book_[s].price * ordered_number << endl;
+                    cout << "Book bought successfully!" << endl;
+                    isbought = true;
+                } else {
+                    cout << "buying book failed, number of order is too big" << endl;
+                    isbought = false;
+                }
             } else {
-                cout << "buying book failed, number of order is too big" << endl;
-                isbought = false;
+                cout << "Thi book sold out!!" << endl;
             }
             return isbought;
 }
@@ -139,13 +137,12 @@ fstream newfile;
          } else if (book_attr == "copies:"){
             book_file->no_exist = stoi(tp.substr(8, 40));
          } else{
-             cout << "end of book" << endl;
              book_shop->AddBook(book_file);
          }
       }
       newfile.close(); //close the file object.
    }
-   return false;
+   return true;
 }
 #if 0
 void BookProj::search_util(string* title_author){
@@ -165,10 +162,10 @@ int BookProj::PrintMenu(){
     cout << "6. Exit" <<endl;
     cout << "Choose an action according to the menue: ";
     do {cin >> menu;
-        if (menu <= 0 || menu > 5){
+        if (menu <= 0 || menu > 6){
             cout << "Enter according the menue...";
         }
-    } while (menu <= 0 || menu > 5);
+    } while (menu <= 0 || menu > 6);
     return menu;
 }
 int main(){
