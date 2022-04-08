@@ -3,92 +3,101 @@ Implement an interface for shape, and derive circle, triangle, rectangle, square
 comparison operators to compare the shapes based on their area if equal then their perimeter should be
 considered. Only, and if only both area and perimeter are equal then the objects should be considered equal
 */
-
+#include<iostream>
+#include<cmath>
+using namespace std;
 class Shape {
-    Shape(int a, int b, int r): a_{a}, b_{b}, r_{r} {}
+    
     protected:
-        int a_;
-        int b_;
-        int r_;
+        int height_, width_;
     public:
-        virtual void Area() = 0;
-        virtual void Perimeter() = 0;
+        Shape() = default;
+        Shape(int height, int width){}
+        virtual int Area() = 0;
+        virtual int Perimeter() = 0;
+        bool operator<(Shape* shape);
+        bool operator>(Shape* shape);
+        bool operator==(Shape* shape);
 };
+class Rectangle : public Shape {
+public:
+  Rectangle(int height, int width) {
+      height_ = height;
+      width_ = width;
+  };
+  int Perimeter() override;
+  int Area() override;
+  ~Rectangle() = default;
+};
+class Triangle: public Shape{
+    private:
+        int side_;
+    public:
+        Triangle(int side): side_{side} {};
+        int Area() override;
+        int Perimeter() override;
+        ~Triangle()= default;
+};
+class Circle: public Shape{
+        int diameter_;
+    public:
+        Circle(int diameter): diameter_{diameter}{};
+        int Area() override;
+        int Perimeter()override;
+        ~Circle()=default;
+};
+int Circle::Area(){
+    return (this->diameter_/2)* (this->diameter_/2) * 3;}
+int Circle::Perimeter(){
+    return 3 * diameter_; }
+ int Rectangle::Area(){
+    return height_ * width_;}
+ int Rectangle::Perimeter(){
+     return 2* (height_ + width_);}
+ int Triangle::Area(){
+     return (sqrt(3)/2) * side_;}
+  int Triangle::Perimeter(){ 
+      return side_ *3;
+  }
 
-class Circle: public Shape {
-    float circle_area;
-    float circle_perimeter;
-    public:
-    void Area(){
-        circle_area = r_ * r_ * 3;
+ bool Shape::operator<(Shape* shape){
+     return this->Area() < shape->Area();
+ }
+bool Shape::operator>(Shape* shape){
+    return this->Area() > shape->Area();
+}
+bool Shape::operator==(Shape* shape){
+    if (this->Area() == shape->Area()){
+        if (this->Perimeter() == shape->Perimeter()){
+            return true;
+        }
     }
-    void Perimeter(){
-        circle_perimeter = 2 * r_ * 3;
-    }
-    float getCircleArea(){
-        return circle_area;
-    }
-    float getCirclePerimeter(){
-        return circle_perimeter;
-    }
-};
-class Trianglr: public Shape {
-    float triangle_area;
-    float triangle_perimeter;
-    public:
-    void Area(){
-        triangle_area = a_ * b_;
-    }
-    void Perimeter(){
-        triangle_perimeter = 2 * (a_ * b_);
-    }
-    float getCircleArea(){
-        return triangle_area;
-    }
-    float getCirclePerimeter(){
-        return triangle_perimeter;
-    }
-};
-
-class Rectangle: public Shape {
-    float rectangle_area;
-    float rectangle_perimeter;
-    public:
-    void Area(){
-        rectangle_area = a_ * b_;
-    }
-    void Perimeter(){
-        rectangle_perimeter = 2 * (a_ + b_);
-    }
-    float getCircleArea(){
-        return rectangle_area;
-    }
-    float getCirclePerimeter(){
-        return rectangle_perimeter;
-    }
-};
-class Square: public Shape {
-    float square_area;
-    float square_perimeter;
-    public:
-    void Area(){
-        square_area = a_ * a_;
-    }
-    void Perimeter(){
-        square_perimeter = 4 * a_;
-    }
-    float getCircleArea(){
-        return square_area;
-    }
-    float getCirclePerimeter(){
-        return square_perimeter;
-    }
-};
-
+    return false;
+}
 int main(){
-    Shape* square();
-    square = new Square;
+    cout << "Shape...::::" << endl;
+    int diam = 3;
+    int h{3};
+    int w{5};
+    Shape* cirk = new Circle(3);
+    Shape* rect = new Rectangle(3,5);
+    Shape* tri = new Triangle(5);
+    if (cirk < rect){
+        cout << "cirk < rect" << endl;
+    } else {
+        cout << "rect < cirk" << endl;
+    }
+    if (tri == rect){
+        cout << "Rectangle is eaual to Triangle" << endl;
+    }else{
+        cout << "Rectangle is NOT eaual to Triangle" << endl;
+    }
 
-
-    return 0;
+    cout << "circle area: " << cirk->Area() << endl;
+    cout << "Circle perimeter: " << cirk->Perimeter() << endl;
+    cout << "Rectangle area: " << rect->Area() << endl;
+    cout << "Rectangle perimeter: " << rect->Perimeter() << endl;
+    cout << "Triangle area: " << tri->Area() << endl;
+    cout << "Triangle perimeter: " << tri->Perimeter() << endl;
+return 0;
 }
