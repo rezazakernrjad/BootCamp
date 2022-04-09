@@ -12,7 +12,7 @@ class Shape {
         int height_, width_;
     public:
         Shape() = default;
-        Shape(int height, int width){}
+        Shape(int height, int width){};
         virtual int Area() = 0;
         virtual int Perimeter() = 0;
         bool operator<(Shape* shape);
@@ -82,7 +82,7 @@ int main(){
     Shape* cirk = new Circle(3);
     Shape* rect = new Rectangle(3,5);
     Shape* tri = new Triangle(5);
-    if (cirk < rect){
+    if (cirk->operator<(rect)){
         cout << "cirk < rect" << endl;
     } else {
         cout << "rect < cirk" << endl;
