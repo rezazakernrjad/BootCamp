@@ -15,6 +15,9 @@ void BookProj::BookShop::AddBook(Book* new_book){
     appended_book_array[number_of_titles_].price = new_book->price;
     appended_book_array[number_of_titles_].publisher = new_book->publisher;
     delete [] book_;
+    //then need to give the appended_book_array address to the book_
+    //then book_ gives a new address (appended_book_array) which is a 
+    //part of memory containing what book_ contained + new_book in the end.
     book_ = appended_book_array;
     number_of_titles_++; // NOTE THIS
 }
@@ -144,7 +147,7 @@ fstream newfile;
    }
    return true;
 }
-#if 0
+#if 1
 void BookProj::search_util(string* title_author){
     cout << "Enter the Title of the book you look for: ";
     do {getline(cin, title_author[0]);}while (title_author[0]== "");
