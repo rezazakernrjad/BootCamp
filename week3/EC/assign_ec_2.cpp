@@ -8,6 +8,7 @@ uint16_t devshift(int val, uint16_t r, int s){
 }
 int main(){
     uint16_t reg = 0x0000;
+    cout << "Note: Speed ove 300km/h will limited to 300, Distances over 1050mm will limeted to 1050" << endl;
     cout << "Enter speed max 300km/h: ";
     int speed{0};
     cin >> speed;
@@ -39,6 +40,6 @@ int main(){
     cin >> left;
     if (left > 1050){left = 1050;}
     reg  = devshift(left, reg, 0);
-    printf("Register valiue= %X \n", reg);
+    printf("Register valuein hex = 0x%X \n\n", reg);
     return 0;
 }
