@@ -1,61 +1,54 @@
-#include<iostream>
-#include<cmath>
+#include <iostream>
+#include <cmath>
 using namespace std;
-template<class T>
-class Shape {
-    public:
-        Shape() = default;
-        bool operator<(T* shape);
-        bool operator>(T* shape);
-        bool operator==(T* shape);
-};
-template<class T>
-class Rectangle{//} : public Shape<T>{
-private:
+
+class Rectangle
+{ // : public Shape {
     int height_, width_;
+
 public:
-  Rectangle(int height, int width): height_{height}, width_{width} {};
-  int Perimeter();
-  int Area();
-  bool operator==(T* shape);
-  ~Rectangle() = default;
+    Rectangle(int height, int width) : height_{height}, width_{width} {};
+    int Perimeter();
+    int Area();
+    ~Rectangle() = default;
 };
-template<class T>
-class Triangle{//: public Shape<T>{
-    private:
-        int side_;
-    public:
-        Triangle(int side): side_{side} {};
-        int Area();
-        int Perimeter();
-        bool operator==(T* shape);
-        ~Triangle()= default;
+class Triangle
+{ //: public Shape{
+private:
+    int side_;
+
+public:
+    Triangle(int side) : side_{side} {};
+    int Area();
+    int Perimeter();
+    ~Triangle() = default;
 };
-template<class T>
-class Circle: public Shape<T>{
-        int diameter_;
-    public:
-        Circle(int diameter): diameter_{diameter}{};
-        int Area();
-        int Perimeter();
-        ~Circle()=default;
+class Circle
+{ //: public Shape{
+    int diameter_;
+
+public:
+    Circle(int diameter) : diameter_{diameter} {};
+    int Area();
+    int Perimeter();
+    ~Circle() = default;
 };
-template<class T>
-int Circle<T>::Area(){
-    return (this->diameter_/2)* (this->diameter_/2) * 3;}
-template<class T>
-int Circle<T>::Perimeter(){
-    return 3 * diameter_; }
-template<class T>
-int Rectangle<T>::Area(){
-    return height_ * width_;}
-template<class T>
-int Rectangle<T>::Perimeter(){
-     return 2* (height_ + width_);}
-template<class T>
-int Triangle<T>::Area(){
-     return (sqrt(3)/2) * side_;}
-template<class T>
-int Triangle<T>::Perimeter(){ 
-      return side_ *3;
-  }
+template <class T1, class T2>
+bool ShapeCompare(T1 *t1, T2 *t2)
+{
+    if (t1->Area() == t2->Area())
+    {
+        if (t1->Perimeter() == t2->Perimeter())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
