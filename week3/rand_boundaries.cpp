@@ -1,6 +1,9 @@
 
 /*
 Scalable lower / upper bound finder. give a number to max_rando...
+user enters a urando, rando is a set<int> of 1024 randoms. 
+programs first looks if urando is located in the left half or right half then again half left/right finaly it searches in a window of 2-4 numbers
+
 
 We want to generate 1024 random integers, then given a new random number; find two integers which are the
 closest to the given number (smaller, and bigger) with less than twelve lookups.
