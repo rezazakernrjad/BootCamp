@@ -1,7 +1,7 @@
 
 #include"bookshop.hpp"
 string title_author_test[2];
-
+/*
 int test(BookProj::BookShop* book_shop,BookProj::Book* new_book, int menu){
 
     BookProj::PrintMenu();
@@ -42,7 +42,7 @@ int test(BookProj::BookShop* book_shop,BookProj::Book* new_book, int menu){
     }
     return 0;
 }
-
+*/
 void BookProj::search_util(string* title_author){
     title_author[0] = title_author_test[0];
     title_author[1] = title_author_test[1];
@@ -116,5 +116,5 @@ int main(){
     } else{
         cout << "Test SEARCH NOT existing Book SUCCESSFULL" << endl;
     }
-    test(book_shop, new_book, 6);
+    book_shop->~BookShop();
 }

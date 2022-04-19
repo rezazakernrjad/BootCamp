@@ -49,6 +49,6 @@ int main(){
     if (left > 1050){left = 1050;}
     reg  = devshift(left, reg, 0);
 //left distance's location in the register is very left, then no shift is needed, 0 for shift to left.
-    printf("Register valuein hex = 0x%X \n\n", reg);
+    printf("Register value in hex = 0x%X \n\n", reg);
     return 0;
 }
