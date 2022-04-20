@@ -21,7 +21,7 @@ void BookProj::BookShop::AddBook(Book* new_book){
     book_ = appended_book_array;
     number_of_titles_++; // NOTE THIS
 }
-void BookProj::BookShop::PrintBook(BookShop* book_shop, int the_book){
+void BookProj::BookShop::PrintBook(BookShop* book_shop, const int& the_book){
         cout << "******************" << endl;
         cout << "title book : " << book_shop->book_[the_book].title << endl;
         cout << "author book : " << book_shop->book_[the_book].auth << endl;
@@ -54,11 +54,8 @@ bool BookProj::BookShop::GetBook(Book* book_attr){
 
 int BookProj::BookShop::SearchBook(BookShop* book_shop){
 //    system("clear");
-//    string title_author[2];
     search_util(title_author);
     string title{title_author[0]};
-//    string author{title_author[1]};
-    // NOTE:
     string author{title_author[1]};
     for (int s{}; s < book_shop->number_of_titles_; s++){
         if (book_shop->book_[s].title == title){
@@ -72,7 +69,7 @@ int BookProj::BookShop::SearchBook(BookShop* book_shop){
     cout << "The book not found in book store data base!!"<< endl;
     return -1;
 }
-bool BookProj::BookShop::BuyBook(BookShop* book_shop, int& s, int& ordered_number){
+bool BookProj::BookShop::BuyBook(BookShop* book_shop, const int& s, const int& ordered_number){
         BookProj::Book* found_book = nullptr;
         found_book = new BookProj::Book;
             bool isbought{false};
@@ -93,7 +90,7 @@ bool BookProj::BookShop::BuyBook(BookShop* book_shop, int& s, int& ordered_numbe
             }
             return isbought;
 }
-bool BookProj::BookShop::EditBook(BookShop* book_shop, int& s){
+bool BookProj::BookShop::EditBook(BookShop* book_shop, const int& s){
         BookProj::Book* found_book = nullptr;
         found_book = new BookProj::Book;
         if (s >= 0){
@@ -147,7 +144,8 @@ fstream newfile;
    }
    return true;
 }
-#if 1
+#if 0
+
 void BookProj::search_util(string* title_author){
     cout << "Enter the Title of the book you look for: ";
     do {getline(cin, title_author[0]);}while (title_author[0]== "");
@@ -183,7 +181,7 @@ int main(){
 //    menu = 1;
     string book_file= "book_list.txt";
     int s{};
-    do {
+    while (menu != 6) {
         switch (menu) {
             case 1:
                 cout << "Enter New book to the shop " << endl;
@@ -214,7 +212,7 @@ int main(){
                 menu = BookProj::PrintMenu();
         }
         menu = BookProj::PrintMenu();
-    } while (menu != 6);
+    } ;//while (menu != 6);
     // case 6:
     book_shop->~BookShop();
     return 0;

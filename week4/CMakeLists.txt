@@ -8,9 +8,10 @@ project(shape VERSION 1.0)
 
 
 add_library(mylib STATIC 
-main.cpp
+
 src/area_perimeter.cpp
 src/compare_shapes.cpp
+main.cpp
 )
 
 target_include_directories(

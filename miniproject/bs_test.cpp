@@ -1,48 +1,7 @@
 
 #include"bookshop.hpp"
 string title_author_test[2];
-/*
-int test(BookProj::BookShop* book_shop,BookProj::Book* new_book, int menu){
 
-    BookProj::PrintMenu();
-    int ord{0};
-    string book_file= "book_list.txt";
-    int s{};
-    switch (menu) {
-        case 1:
-            cout << "Enter New book to the shop " << endl;
-            if (book_shop->GetBook(new_book))
-                {book_shop->AddBook(new_book);}
-            break;
-        case 2:
-            s = book_shop->SearchBook(book_shop);
-            if (s >= 0){
-                cout << "Enter number of books to buy: ";
-                cin >> ord;
-                book_shop->BuyBook(book_shop, s, ord);
-            } else {
-                cout << "Book not found to be edited!!" << endl;
-            }
-            break;   
-        case 3:
-            book_shop->SearchBook(book_shop);
-            break;
-        case 4:
-            s = book_shop->SearchBook(book_shop);
-            book_shop->EditBook(book_shop, s);
-            break;
-        case 5:
-            book_shop->AddBookFromList(book_shop, new_book, "book_list.txt");
-            break;
-        case 6:
-            book_shop->~BookShop();
-            break;
-        default:
-            menu = BookProj::PrintMenu();
-    }
-    return 0;
-}
-*/
 void BookProj::search_util(string* title_author){
     title_author[0] = title_author_test[0];
     title_author[1] = title_author_test[1];
@@ -59,7 +18,7 @@ int TestSearchBook(BookProj::BookShop* book_shop){
 bool TestBuyBook(BookProj::BookShop* book_shop, int& ordered_number){
     int s{};
     bool buy_test{false};
-     cout << "Buy " << ordered_number << " number of "<< title_author_test[0] << endl;
+     cout << "Buy " << ordered_number << " books of "<< title_author_test[0] << endl;
     s = book_shop->SearchBook(book_shop);
             if (s >= 0){
                 book_shop->BuyBook(book_shop, s, ordered_number);
@@ -72,7 +31,7 @@ bool TestBuyBook(BookProj::BookShop* book_shop, int& ordered_number){
 }
 bool TestAddBookFromList(BookProj::BookShop* book_shop, BookProj::Book* new_book){
     bool list_fb{false};
-    if (book_shop->AddBookFromList(book_shop, new_book, "book_list.txt")){
+    if (book_shop->AddBookFromList(book_shop, new_book, "../book_list.txt")){
         list_fb= true;
     } else {list_fb= false;}
     return list_fb;

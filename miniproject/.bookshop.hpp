@@ -24,9 +24,9 @@ namespace BookProj {
             void AddBook(Book*);
             bool AddBookFromList(BookShop*,Book*, string);
             int SearchBook(BookShop*);
-            bool EditBook(BookShop*, int&);
-            bool BuyBook(BookShop*, int&, int&);
-            void PrintBook(BookShop*, int);
+            bool EditBook(BookShop*, const int&);
+            bool BuyBook(BookShop*, const int&, const int&);
+            void PrintBook(BookShop*, const int&);
             ~BookShop(){
                 delete [] book_;
                 cout << "freed borrowed heep" << endl;
