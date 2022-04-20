@@ -4,21 +4,25 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project(CompareShape VERSION 1.0)
+project(shape VERSION 1.0)
 
 
-#file(GLOB_RECURSE SRC_FILES src/*.cpp)
-add_executable(CompareShape
-    main.cpp
-    src/area_perimeter.cpp
-#    src/compare_shapes.cpp
-#    ${SRC_FILES}
-    )
+add_library(mylib STATIC 
+main.cpp
+src/area_perimeter.cpp
+src/compare_shapes.cpp
+)
 
-target_include_directories(CompareShape
-    PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(
+    mylib
+PUBLIC 
+    ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+add_executable(shape
+    main.cpp)
+target_link_libraries(shape 
+PUBLIC 
+    mylib)
 
 
 message(STATUS "---------------------***********Debug CMakeList************--------------------------")

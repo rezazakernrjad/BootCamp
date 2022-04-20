@@ -22,5 +22,4 @@ int CompShapes::Triangle::Area()
 }
 int CompShapes::Triangle::Perimeter()
 {
-    return side_ * 3;
-}
+    return side_ * 3;}
