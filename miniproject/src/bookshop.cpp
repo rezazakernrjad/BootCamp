@@ -3,7 +3,8 @@
 
 
 #include"bookshop.hpp"
-
+// generall function to add new book/s from user or text file to the Book array
+//with each new book the size of book_ increases.
 void BookProj::BookShop::AddBook(Book* new_book){
     BookProj::Book* appended_book_array = new Book[number_of_titles_ + 1];
     for (unsigned k{}; k < number_of_titles_; ++k ){
@@ -15,7 +16,6 @@ void BookProj::BookShop::AddBook(Book* new_book){
     appended_book_array[number_of_titles_].price = new_book->price;
     appended_book_array[number_of_titles_].publisher = new_book->publisher;
     delete [] book_;
-    
     book_ = appended_book_array;
     number_of_titles_++; // NOTE THIS
 }
@@ -28,6 +28,8 @@ void BookProj::BookShop::PrintBook(BookShop* book_shop, const int& the_book){
         cout << "number of copies : "  << book_shop->book_[the_book].no_exist << endl;
         cout << "******************" << endl;
 }
+//receives book's attrebutes from user or text file
+// checks if the entry book is already exists, if not then pass book_attr* to AddBook()
 bool BookProj::BookShop::GetBook(Book* book_attr){
     cout << "Enter book title: ";
     do {getline(cin, book_attr->title);}while (book_attr->title== "");
@@ -49,6 +51,8 @@ bool BookProj::BookShop::GetBook(Book* book_attr){
 
     return true;
     }
+//looks for author and titte got from user, if both matches any book in the book_[]
+// returns the index of the book in book_[] if not, returns -1.
 
 int BookProj::BookShop::SearchBook(BookShop* book_shop){
 //    system("clear");
@@ -67,6 +71,9 @@ int BookProj::BookShop::SearchBook(BookShop* book_shop){
     cout << "The book not found in book store data base!!"<< endl;
     return -1;
 }
+//receives author and title, then call SearchBook() to see if the book exists and if yes,
+// where in the book_[] is located. then asks for the number of copies to buy then calculates the total price
+//if the number of buy is greater han number of copies gives a warning message.
 bool BookProj::BookShop::BuyBook(BookShop* book_shop, const int& s, const int& ordered_number){
         BookProj::Book* found_book = nullptr;
         found_book = new BookProj::Book;
@@ -88,6 +95,8 @@ bool BookProj::BookShop::BuyBook(BookShop* book_shop, const int& s, const int& o
             }
             return isbought;
 }
+//asks which book needs editing, call search to find the index of the book if exists,
+// then call GetBook() to receive new attrebutes and updates the book_[i] with new info
 bool BookProj::BookShop::EditBook(BookShop* book_shop, Book* found_book, const int& s){
 
         if (s >= 0){
@@ -104,7 +113,8 @@ bool BookProj::BookShop::EditBook(BookShop* book_shop, Book* found_book, const i
             return false;
         }
 }
-
+// reads a list of books from a text file, looks for first word in each line
+// updates book_[] according to the list.
 bool BookProj::BookShop::AddBookFromList(BookShop* book_shop, Book* book_file, string book_list){
 fstream newfile;
    

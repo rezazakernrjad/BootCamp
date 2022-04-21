@@ -1,5 +1,5 @@
 #include"bookshop.hpp"
-
+// utill to generalized SearcheBook()
 void BookProj::search_util(string* title_author){
     cout << "Enter the Title of the book you look for: ";
     do {getline(cin, title_author[0]);}while (title_author[0]== "");

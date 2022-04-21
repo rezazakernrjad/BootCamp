@@ -15,6 +15,8 @@ namespace BookProj {
     };
 
     class BookShop {
+        // to avoid of creating array of the entire class,
+        // put book's related info in a struct to create array of this struct
             Book* book_ = nullptr;
             int number_of_titles_; // how many titles are in the shop
 
