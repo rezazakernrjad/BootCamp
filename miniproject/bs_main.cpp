@@ -57,7 +57,8 @@ int main(){
                 break;
             case 4:
                 s = book_shop->SearchBook(book_shop);
-                book_shop->EditBook(book_shop, s);
+                book_shop->GetBook(new_book);
+                book_shop->EditBook(book_shop, new_book, s);
                 break;
             case 5:
                 book_shop->AddBookFromList(book_shop, new_book, "../book_list.txt");

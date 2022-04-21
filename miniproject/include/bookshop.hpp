@@ -24,7 +24,7 @@ namespace BookProj {
             void AddBook(Book*);
             bool AddBookFromList(BookShop*,Book*, string);
             int SearchBook(BookShop*);
-            bool EditBook(BookShop*, const int&);
+            bool EditBook(BookShop*, Book*, const int&);
             bool BuyBook(BookShop*, const int&, const int&);
             void PrintBook(BookShop*, const int&);
             ~BookShop(){

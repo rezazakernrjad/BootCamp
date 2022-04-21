@@ -15,9 +15,7 @@ void BookProj::BookShop::AddBook(Book* new_book){
     appended_book_array[number_of_titles_].price = new_book->price;
     appended_book_array[number_of_titles_].publisher = new_book->publisher;
     delete [] book_;
-    //then need to give the appended_book_array address to the book_
-    //then book_ gives a new address (appended_book_array) which is a 
-    //part of memory containing what book_ contained + new_book in the end.
+    
     book_ = appended_book_array;
     number_of_titles_++; // NOTE THIS
 }
@@ -90,12 +88,10 @@ bool BookProj::BookShop::BuyBook(BookShop* book_shop, const int& s, const int& o
             }
             return isbought;
 }
-bool BookProj::BookShop::EditBook(BookShop* book_shop, const int& s){
-        BookProj::Book* found_book = nullptr;
-        found_book = new BookProj::Book;
+bool BookProj::BookShop::EditBook(BookShop* book_shop, Book* found_book, const int& s){
+
         if (s >= 0){
             cout << "To Edit found book enter books properties..." << endl;
-            book_shop->GetBook(found_book);
             book_shop->book_[s].auth = found_book->auth;
             book_shop->book_[s].title = found_book->title;
             book_shop->book_[s].publisher = found_book->publisher;
@@ -203,7 +199,8 @@ int main(){
                 break;
             case 4:
                 s = book_shop->SearchBook(book_shop);
-                book_shop->EditBook(book_shop, s);
+                book_shop->GetBook(new_book);
+                book_shop->EditBook(book_shop, new_book, s);
                 break;
             case 5:
                 book_shop->AddBookFromList(book_shop, new_book, "book_list.txt");

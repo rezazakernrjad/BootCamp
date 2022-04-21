@@ -17,7 +17,7 @@ PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_executable(bookShop
-    bs_main.cpp) # to run test replace bs_main.cpp with bs_test.cpp
+    bs_test.cpp) # to run test replace bs_main.cpp with bs_test.cpp
 
 target_link_libraries(bookShop 
 PUBLIC 
