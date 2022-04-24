@@ -54,7 +54,7 @@ bool BookProj::BookShop::GetBook(Book* book_attr){
 //looks for author and titte got from user, if both matches any book in the book_[]
 // returns the index of the book in book_[] if not, returns -1.
 
-int BookProj::BookShop::SearchBook(BookShop* book_shop){
+int BookProj::BookShop::SearchBook(const BookShop* book_shop){
 //    system("clear");
     search_util(title_author);
     string title{title_author[0]};
@@ -62,13 +62,10 @@ int BookProj::BookShop::SearchBook(BookShop* book_shop){
     for (int s{}; s < book_shop->number_of_titles_; s++){
         if (book_shop->book_[s].title == title){
             if (book_shop->book_[s].auth == author){
-                cout << "The Book is found successfully: " << endl;
-                book_shop->PrintBook(book_shop, s);
                 return s;
             }
         }
     }
-    cout << "The book not found in book store data base!!"<< endl;
     return -1;
 }
 //receives author and title, then call SearchBook() to see if the book exists and if yes,
@@ -82,16 +79,15 @@ bool BookProj::BookShop::BuyBook(BookShop* book_shop, const int& s, const int& o
             if (book_shop->book_[s].no_exist > 0) {
                 if (ordered_number < book_shop->book_[s].no_exist){
                     book_shop->book_[s].no_exist -= ordered_number;
-                    book_shop->PrintBook(book_shop, s);
                     cout << "Amount: $. " << book_shop->book_[s].price * ordered_number << endl;
-                    cout << "Book bought successfully!" << endl;
                     isbought = true;
                 } else {
                     cout << "buying book failed, number of order is too big" << endl;
                     isbought = false;
                 }
             } else {
-                cout << "Thi book sold out!!" << endl;
+                cout << "This book sold out!!" << endl;
+                isbought = false;
             }
             return isbought;
 }
@@ -106,7 +102,6 @@ bool BookProj::BookShop::EditBook(BookShop* book_shop, Book* found_book, const i
             book_shop->book_[s].publisher = found_book->publisher;
             book_shop->book_[s].price = found_book->price;
             book_shop->book_[s].no_exist = found_book->no_exist;
-            book_shop->PrintBook(book_shop, s);
             return true;
         } else {
             cout << "Book not found to be edited!!" << endl;

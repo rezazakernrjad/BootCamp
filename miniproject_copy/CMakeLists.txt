@@ -18,7 +18,7 @@ PUBLIC
 
 add_executable(bookShop
  #bs_test.cpp 
- test_mini.cpp) # to run test replace bs_main.cpp with bs_test.cpp
+ test_mini.cpp) # to run manualy use bs_main.cpp
 
 
 

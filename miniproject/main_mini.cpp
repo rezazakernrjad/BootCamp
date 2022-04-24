@@ -1,9 +1,9 @@
 #include"bookshop.hpp"
 // utill to generalized SearcheBook()
 void BookProj::search_util(string* title_author){
-    cout << "Enter the Title of the book you look for: ";
+    cout << "Enter the Title of the book: ";
     do {getline(cin, title_author[0]);}while (title_author[0]== "");
-    cout << "Enter Author of the book you look for: ";
+    cout << "Enter Author of the book: ";
     do { getline(cin, title_author[1]);}while (title_author[1]== "");
 }
 int BookProj::PrintMenu(){
@@ -47,18 +47,26 @@ int main(){
                 if (s >= 0){
                     cout << "Enter number of books to buy: ";
                     cin >> ord;
-                    book_shop->BuyBook(book_shop, s, ord);
+                    if (!book_shop->BuyBook(book_shop, s, ord)){
+                        cout << "Buying Book Failed!!" << endl;}
+                    book_shop->PrintBook(book_shop, s);
                 } else {
-                    cout << "Book not found to be edited!!" << endl;
-                }
+                    cout << "Book not found to be bought!..." << endl;}
                 break;   
             case 3:
-                book_shop->SearchBook(book_shop);
+                s = book_shop->SearchBook(book_shop);
+                if (s>=0){cout << "The Book is found successfully: " << endl;
+                    book_shop->PrintBook(book_shop, s);}
+                else{cout << "The book not found in book store data base!!"<< endl;}
+                
                 break;
             case 4:
                 s = book_shop->SearchBook(book_shop);
+                if (s >= 0){
                 book_shop->GetBook(new_book);
                 book_shop->EditBook(book_shop, new_book, s);
+                book_shop->PrintBook(book_shop, s);
+                } else{cout << "Book not found to be edited!..." << endl;}
                 break;
             case 5:
                 book_shop->AddBookFromList(book_shop, new_book, "../book_list.txt");

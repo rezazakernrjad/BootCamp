@@ -17,8 +17,20 @@ PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_executable(bookShop
-    bs_test.cpp) # to run test replace bs_main.cpp with bs_test.cpp
+ #bs_test.cpp 
+ gtest_mini.cpp) # to run manualy use main_mini.cpp, Gtest: gtest_mini.cpp and test:test_mini.cpp
 
-target_link_libraries(bookShop 
-PUBLIC 
-    mylib)
+
+
+#add_executable(runTests test_mini.cpp)
+# Locate GTest
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+
+target_link_libraries(bookShop PUBLIC 
+mylib
+gtest
+gtest_main
+${GTEST_LIBRARIES} pthread)
+#add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})

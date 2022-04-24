@@ -25,10 +25,13 @@ namespace BookProj {
             bool GetBook(Book*);
             void AddBook(Book*);
             bool AddBookFromList(BookShop*,Book*, string);
-            int SearchBook(BookShop*);
+            int SearchBook(const BookShop*);
             bool EditBook(BookShop*, Book*, const int&);
             bool BuyBook(BookShop*, const int&, const int&);
             void PrintBook(BookShop*, const int&);
+            Book* getBook(){
+                return book_;
+            }
             ~BookShop(){
                 delete [] book_;
                 cout << "freed borrowed heep" << endl;

@@ -61,12 +61,11 @@ int BookProj::BookShop::SearchBook(BookShop* book_shop){
     search_util(title_author);
     string title{title_author[0]};
     string author{title_author[1]};
-    cout << "in SEARCH AUTH: " << author << endl;
     for (int s{}; s < book_shop->number_of_titles_; s++){
         if (book_shop->book_[s].title == title){
             if (book_shop->book_[s].auth == author){
                 cout << "The Book is found successfully: " << endl;
-                book_shop->PrintBook(book_shop, s);
+//                book_shop->PrintBook(book_shop, s);
                 return s;
             }
         }
@@ -87,7 +86,7 @@ bool BookProj::BookShop::BuyBook(BookShop* book_shop, const int& s, const int& o
                     book_shop->book_[s].no_exist -= ordered_number;
                     book_shop->PrintBook(book_shop, s);
                     cout << "Amount: $. " << book_shop->book_[s].price * ordered_number << endl;
-                    cout << "Book bought successfully!" << endl;
+                    cout << "Book: "<< s  <<" bought successfully!" << endl;
                     isbought = true;
                 } else {
                     cout << "buying book failed, number of order is too big" << endl;
@@ -102,7 +101,7 @@ bool BookProj::BookShop::BuyBook(BookShop* book_shop, const int& s, const int& o
 //asks which book needs editing, call search to find the index of the book if exists,
 // then call GetBook() to receive new attrebutes and updates the book_[i] with new info
 bool BookProj::BookShop::EditBook(BookShop* book_shop, Book* found_book, const int& s){
-
+        bool edit_fb{false};
         if (s >= 0){
             cout << "To Edit found book enter books properties..." << endl;
             book_shop->book_[s].auth = found_book->auth;
@@ -110,12 +109,14 @@ bool BookProj::BookShop::EditBook(BookShop* book_shop, Book* found_book, const i
             book_shop->book_[s].publisher = found_book->publisher;
             book_shop->book_[s].price = found_book->price;
             book_shop->book_[s].no_exist = found_book->no_exist;
+            cout << "S in Edit Book: " << s << endl;
             book_shop->PrintBook(book_shop, s);
-            return true;
+            edit_fb = true;
         } else {
             cout << "Book not found to be edited!!" << endl;
-            return false;
+            edit_fb = false;
         }
+    return edit_fb;
 }
 // reads a list of books from a text file, looks for first word in each line
 // updates book_[] according to the list.
