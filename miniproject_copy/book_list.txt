@@ -1,0 +1,42 @@
+title :	t_1
+author: a_1
+publsh:	Mc sy publishe world wide_
+price : 1000
+copies: 10000
+
+title :	t_2
+author: a_2
+publsh:	Mc sy publishe world wide_2
+price : 2000
+copies: 20000
+
+title :	t_3
+author: a_3
+publsh:	Mc sy publishe world wide_3
+price : 3000
+copies: 30000
+
+title :	t_4
+author: a_4
+publsh:	Mc sy publishe world wide_4
+price : 4000
+copies: 40000
+
+title :	t_5
+author: a_5
+publsh:	Mc sy publishe world wide_5
+price : 5000
+copies: 50000
+
+title :	t_6
+author: a_6
+publsh:	Mc sy publishe world wide_6
+price : 6000
+copies: 60000
+
+title :	t_7
+author: a_7
+publsh:	Mc sy publishe world wide_7
+price : 7000
+copies: 70000
+END OF LIST
