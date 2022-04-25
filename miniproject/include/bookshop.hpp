@@ -32,7 +32,7 @@ namespace BookProj {
             bool EditBook(BookShop*, Book*, const int&);
             bool BuyBook(BookShop*, const int&, const int&);
             void PrintBook(BookShop*, const int&);
-            Book* getBook(){
+            Book* getBook() const{
                 return book_;
             }
             ~BookShop(){
