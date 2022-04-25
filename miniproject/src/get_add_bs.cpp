@@ -51,6 +51,7 @@ bool BookProj::BookShop::GetBook(Book* book_attr){
 
     return true;
     }
+#if 0
 //looks for author and titte got from user, if both matches any book in the book_[]
 // returns the index of the book in book_[] if not, returns -1.
 
@@ -68,6 +69,8 @@ int BookProj::BookShop::SearchBook(const BookShop* book_shop){
     }
     return -1;
 }
+#endif
+#if 0
 //receives author and title, then call SearchBook() to see if the book exists and if yes,
 // where in the book_[] is located. then asks for the number of copies to buy then calculates the total price
 //if the number of buy is greater han number of copies gives a warning message.
@@ -91,6 +94,8 @@ bool BookProj::BookShop::BuyBook(BookShop* book_shop, const int& s, const int& o
             }
             return isbought;
 }
+#endif
+#if 0
 //asks which book needs editing, call search to find the index of the book if exists,
 // then call GetBook() to receive new attrebutes and updates the book_[i] with new info
 bool BookProj::BookShop::EditBook(BookShop* book_shop, Book* found_book, const int& s){
@@ -108,6 +113,8 @@ bool BookProj::BookShop::EditBook(BookShop* book_shop, Book* found_book, const i
             return false;
         }
 }
+#endif
+#if 0
 // reads a list of books from a text file, looks for first word in each line
 // updates book_[] according to the list.
 bool BookProj::BookShop::AddBookFromList(BookShop* book_shop, Book* book_file, string book_list){
@@ -145,6 +152,7 @@ fstream newfile;
    }
    return true;
 }
+#endif
 #if 0
 
 void BookProj::search_util(string* title_author){

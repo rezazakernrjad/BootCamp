@@ -1,3 +1,6 @@
+#ifndef BOOKSHOP_HPP
+#define BOOKSHOP_HPP
+
 #include<string>
 #include<iostream>
 #include <fstream>
@@ -41,3 +44,5 @@ namespace BookProj {
     int PrintMenu();
     void search_util(string* title_author);
 } //namespace BookProj
+
+#endif // BOOKSHOP_HPP

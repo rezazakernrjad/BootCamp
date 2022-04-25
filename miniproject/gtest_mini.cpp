@@ -53,23 +53,23 @@ TEST_F(TestBokShop, AddBookFromList){
 //     buy_book = bookshop_->BuyBook(bookshop_, s, 20001);
 //     EXPECT_EQ(buy_book, false);
 // }
+/*
+TEST_F(TestBokShop, BuyNotExistingBook){
+    title_author_test[0] = "not exists";
+    title_author_test[1] = "not exists";
+    int s = bookshop_->SearchBook(bookshop_);
+    bool buy_book = bookshop_->BuyBook(bookshop_, s, 10);
+    EXPECT_EQ(buy_book, false);
+}
 
-// TEST_F(TestBokShop, BuyNotExistingBook){
-//     title_author_test[0] = "not exists";
-//     title_author_test[1] = "not exists";
-//     int s = bookshop_->SearchBook(bookshop_);
-//     bool buy_book = bookshop_->BuyBook(bookshop_, s, 10);
-//     EXPECT_EQ(buy_book, false);
-// }
-
-// TEST_F(TestBokShop, BuyTooManyBooks){
-//     title_author_test[0] = "t_2";
-//     title_author_test[1] = "a_2";
-//     int s = bookshop_->SearchBook(bookshop_);
-//     bool buy_book = bookshop_->BuyBook(bookshop_, s, 20001);
-//     EXPECT_EQ(buy_book, false);
-// }
-
+TEST_F(TestBokShop, BuyTooManyBooks){
+    title_author_test[0] = "t_2";
+    title_author_test[1] = "a_2";
+    int s = bookshop_->SearchBook(bookshop_);
+    bool buy_book = bookshop_->BuyBook(bookshop_, s, 20001);
+    EXPECT_EQ(buy_book, false);
+}
+*/
 
 TEST_F(TestBokShop, SearchBook){
     title_author_test[0] = "t_3";

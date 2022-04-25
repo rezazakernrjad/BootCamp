@@ -8,7 +8,11 @@ project(bookShop VERSION 1.0)
 
 
 add_library(mylib STATIC 
-src/bookshop.cpp
+src/get_add_bs.cpp
+src/addbookfromlist_bs.cpp
+src/buy_bs.cpp
+src/edit_bs.cpp
+src/search_bs.cpp
 )
 
 target_include_directories(
@@ -18,7 +22,7 @@ PUBLIC
 
 add_executable(bookShop
  #bs_test.cpp 
- gtest_mini.cpp) # to run manualy use main_mini.cpp, Gtest: gtest_mini.cpp and test:test_mini.cpp
+ main_mini.cpp) # to run manualy use main_mini.cpp, Gtest: gtest_mini.cpp and test:test_mini.cpp
 
 
 

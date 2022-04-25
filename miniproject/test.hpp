@@ -14,5 +14,4 @@ class TestBokShop : public ::testing::Test
         BookProj::Book* book_ = nullptr;
         BookProj::Book book;
         string* title_author;
-        
 };
